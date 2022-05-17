@@ -12,7 +12,7 @@ class Ship
   end
 
   def sunk?
-    health != length
+    health = 0 
   end
 
   def hit
