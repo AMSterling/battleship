@@ -42,7 +42,7 @@ RSpec.describe Cell do
     expect(cell.ship).to be_instance_of(Ship)
   end
 
-  xit "cell no longer empty" do
+  it "cell no longer empty" do
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
     cell.place_ship(cruiser)

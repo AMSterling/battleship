@@ -7,12 +7,11 @@ class Cell
   end
 
   def empty?
-    ship != coordinate
+    @ship == nil
   end
 
   def place_ship(type)
-    placement = type
-    @ship = placement
+    @ship = type
   end
 
 end
