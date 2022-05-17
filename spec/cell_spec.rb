@@ -32,7 +32,7 @@ RSpec.describe Cell do
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
 
-    expect(cruiser).to be_instance_of(Ship)
+    expect(cruiser).to be_instance_of Ship
   end
 
   it "places a ship" do
@@ -40,7 +40,7 @@ RSpec.describe Cell do
     cell = Cell.new("B4")
     cell.place_ship(cruiser)
 
-    expect(cell.ship).to be_instance_of(Ship)
+    expect(cell.ship).to be_instance_of Ship
   end
 
   it "cell no longer empty" do
@@ -51,15 +51,15 @@ RSpec.describe Cell do
     expect(cell.empty?).to be false
   end
 
-  xit "has ship been fired upon?" do
+  it "has ship been fired upon?" do
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
     cell.place_ship(cruiser)
 
-    expect(cell.fired_upon?). to be false
+    expect(cell.fired_upon?).to be false
   end
 
-  xit "fired upon ship" do
+  it "fired upon ship" do
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
     cell.place_ship(cruiser)
@@ -68,7 +68,7 @@ RSpec.describe Cell do
     expect(cell.ship.health).to eq(2)
   end
 
-  xit "ship has been fired upon" do
+  it "ship has been fired upon" do
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
     cell.place_ship(cruiser)
@@ -77,7 +77,7 @@ RSpec.describe Cell do
     expect(cell.fired_upon?).to be true
   end
 
-  xit "cell 1 is instance of Cell" do
+  it "cell 1 is instance of Cell" do
     cell_1 = Cell.new("B4")
 
     expect(cell_1).to be_instance_of Cell
