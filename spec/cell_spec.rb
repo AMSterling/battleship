@@ -31,15 +31,15 @@ RSpec.describe Cell do
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
 
-    expect(cruiser).to be_instance_of Ship
+    expect(cruiser).to be_instance_of(Ship)
   end
 
-  xit "places a ship" do
+  it "places a ship" do
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
     cell.place_ship(cruiser)
 
-    expect(cell.ship).to eq(Ship)
+    expect(cell.ship).to be_instance_of(Ship)
   end
 
   xit "cell no longer empty" do
