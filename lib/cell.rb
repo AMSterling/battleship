@@ -6,15 +6,15 @@ class Cell
   end
 
   def ship
-
+    
   end
 
   def empty?
-
+    ship != coordinate
   end
 
-  def place_ship(ship.name)
-    
+  def place_ship(name)
+
   end
 
 end
