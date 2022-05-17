@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/cell'
 require './lib/ship'
+require 'pry'
 
 RSpec.describe Cell do
   it 'is an instance of cell' do
@@ -18,7 +19,7 @@ RSpec.describe Cell do
   it "cell is empty" do
     cell = Cell.new("B4")
 
-    expect(cell.ship).to eq(nil)
+    expect(cell.ship).to be_nil
   end
 
   it "does cell return empty?" do
@@ -107,7 +108,7 @@ RSpec.describe Cell do
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
 
-    expect(cell_2.render).to eq(".")
+    expect(cell_2.render).to eq("")
   end
 
   xit "show ship with render" do #also discuss
