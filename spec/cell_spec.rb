@@ -3,22 +3,22 @@ require './lib/cell'
 require './lib/ship'
 
 RSpec.describe Cell do
-  xit 'is an instance of cell' do
+  it 'is an instance of cell' do
     cell = Cell.new("B4")
     expect(cell).to be_instance_of(Cell)
   end
 
-  xit "contains a cell" do
+  it "contains a cell" do
     cell = Cell.new("B4")
     expect(cell.coordinate).to eq("B4")
   end
 
-  xit "cell is empty" do
+  it "cell is empty" do
     cell = Cell.new("B4")
     expect(cell.ship).to eq(nil)
   end
 
-  xit "does cell return empty?" do
+  it "does cell return empty?" do
     cell = Cell.new("B4")
     expect(cell.empty?).to be true
   end

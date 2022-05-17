@@ -5,5 +5,16 @@ class Cell
     @coordinate = coordinate
   end
 
+  def ship
+
+  end
+
+  def empty?
+
+  end
+
+  def place_ship(ship.name)
+    
+  end
 
 end
