@@ -5,7 +5,7 @@ RSpec.describe Ship do
   it 'is an instance of Ship' do
     cruiser = Ship.new("Cruiser", 3)
 
-    expect(cruiser).to be_instance_of(Ship)
+    expect(cruiser).to be_instance_of Ship
   end
 
   it 'is a type' do
