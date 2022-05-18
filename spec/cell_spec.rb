@@ -110,7 +110,7 @@ RSpec.describe Cell do
 
     expect(cell_2.render).to eq("")
   end
-
+# Indicate that we want to show a ship with the optional argument
   xit "show ship with render" do #also discuss
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
@@ -123,8 +123,17 @@ RSpec.describe Cell do
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
+    cell_2.fire_upon
 
+    expect(cell_2.render).to eq ("H")
   end
 
+  xit "fire upon and show hit" do
+    cell_1 = Cell.new("B4")
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(cruiser)
+
+    expect(cruiser.sunk?).to be false
+  end
 
 end
