@@ -1,10 +1,12 @@
 require 'pry'
 class Cell
+  attr_accessor :sunk
   attr_reader :coordinate, :ship, :fire_upon
 
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
+    @fire_upon = false
   end
 
   def empty?
@@ -16,19 +18,28 @@ class Cell
   end
 
   def fired_upon?
-    ship.health != ship.length
+    @fire_upon
   end
 
   def fire_upon
-      ship.hit
+    if empty? == false
+      @ship.hit
+    end
+    @fire_upon = true
   end
 
-  def render
-    if empty?
+  def render(render = false)
+    if @fire_upon && empty? == true
+      "M"
+    elsif @fire_upon && empty? == false
+      "H"
+    elsif render == true
+      "S"
+    # elsif @ship.hit == @ship.length
+    #   "X"
+    else
       "."
-    # elsif empty? && fire_upon
-    #   "M"
     end
   end
-
+#miss , hit , sunk , show ship, .
 end

@@ -92,19 +92,20 @@ RSpec.describe Cell do
   it "fire a shot and miss" do
     cruiser = Ship.new("Cruiser", 3)
     cell_1 = Cell.new("B4")
-    cell_1.fire_upon
 
+    cell_1.fire_upon
     expect(cell_1.render).to eq("M")
   end
 
-  xit "cell_2 exist" do
+  it "cell_2 exist" do
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
 
     expect(cell_2).to be_instance_of Cell
   end
 
-  xit "cell_2 before render" do
+  it "cell_2 before render" do
+    cruiser = Ship.new("Cruiser", 3)
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
@@ -112,7 +113,8 @@ RSpec.describe Cell do
     expect(cell_2.render).to eq(".")
   end
 
-  xit "show ship with render" do
+  it "show ship with render" do
+    cruiser = Ship.new("Cruiser", 3)
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
@@ -120,7 +122,8 @@ RSpec.describe Cell do
     expect(cell_2.render(true)).to eq("S")
   end
 
-  xit "fire upon and show hit" do
+  it "fire upon and show hit" do
+    cruiser = Ship.new("Cruiser", 3)
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
@@ -129,12 +132,41 @@ RSpec.describe Cell do
     expect(cell_2.render).to eq ("H")
   end
 
-  xit "fire upon and show hit" do
+
+  it "is ship sunk?" do
+    cruiser = Ship.new("Cruiser", 3)
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
+    cell_2.fire_upon
+    cruiser.hit
 
     expect(cruiser.sunk?).to be false
   end
+
+  it "ship is sunk" do
+    cruiser = Ship.new("Cruiser", 3)
+    cell_1 = Cell.new("B4")
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(cruiser)
+    cruiser.hit
+    cruiser.hit
+    cruiser.hit
+  #may be revisiting
+    expect(cruiser.sunk?).to be true
+  end
+
+  xit "ship is sunk" do
+    cruiser = Ship.new("Cruiser", 3)
+    cell_1 = Cell.new("B4")
+    cell_2 = Cell.new("C3")
+    cell_2.place_ship(cruiser)
+    cruiser.hit
+    cruiser.hit
+    cruiser.hit
+  #may be revisiting
+    expect(cell_2.render).to eq("X")
+  end
+
 
 end
