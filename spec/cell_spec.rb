@@ -156,7 +156,7 @@ RSpec.describe Cell do
     expect(cruiser.sunk?).to be true
   end
 
-  xit "ship is sunk" do
+  it "ship is sunk" do
     cruiser = Ship.new("Cruiser", 3)
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")

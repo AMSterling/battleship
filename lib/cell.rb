@@ -29,17 +29,16 @@ class Cell
   end
 
   def render(render = false)
-    if @fire_upon && empty? == true
+    if @fire_upon && empty?
       "M"
-    elsif @fire_upon && empty? == false
+    elsif @fire_upon && !empty?
       "H"
     elsif render == true
       "S"
-    # elsif @ship.hit == @ship.length
-    #   "X"
+    elsif !empty? && @ship.sunk?
+      "X"
     else
       "."
     end
   end
-#miss , hit , sunk , show ship, .
 end
