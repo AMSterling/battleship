@@ -1,11 +1,10 @@
 require 'pry'
 class Cell
-  attr_reader :coordinate, :ship
+  attr_reader :coordinate, :ship, :fire_upon
 
   def initialize(coordinate)
     @coordinate = coordinate
     @ship = nil
-    @fired_upon = false
   end
 
   def empty?
@@ -21,6 +20,15 @@ class Cell
   end
 
   def fire_upon
-    ship.hit
+      ship.hit
   end
+
+  def render
+    if empty?
+      "."
+    # elsif empty? && fire_upon
+    #   "M"
+    end
+  end
+
 end

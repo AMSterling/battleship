@@ -83,13 +83,14 @@ RSpec.describe Cell do
     expect(cell_1).to be_instance_of Cell
   end
 
-  xit "render empty cell" do
+  it "render empty cell" do
     cell_1 = Cell.new("B4")
 
-    expect(cell_1).to eq(".")
+    expect(cell_1.render).to eq(".")
   end
 
-  xit "fire a shot and miss" do
+  it "fire a shot and miss" do
+    cruiser = Ship.new("Cruiser", 3)
     cell_1 = Cell.new("B4")
     cell_1.fire_upon
 
@@ -103,15 +104,15 @@ RSpec.describe Cell do
     expect(cell_2).to be_instance_of Cell
   end
 
-  xit "cell_2 before render" do #discuss
+  xit "cell_2 before render" do
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
 
-    expect(cell_2.render).to eq("")
+    expect(cell_2.render).to eq(".")
   end
-# Indicate that we want to show a ship with the optional argument
-  xit "show ship with render" do #also discuss
+
+  xit "show ship with render" do
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
