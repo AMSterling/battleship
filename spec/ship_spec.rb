@@ -35,27 +35,22 @@ RSpec.describe Ship do
 
   it 'takes two hits' do
     cruiser = Ship.new("Cruiser", 3)
+    2.times { cruiser.hit }
 
-    cruiser.hit
-    cruiser.hit
     expect(cruiser.health).to eq(1)
   end
 
   it 'takes three hits' do
     cruiser = Ship.new("Cruiser", 3)
+    3.times { cruiser.hit }
 
-    cruiser.hit
-    cruiser.hit
-    cruiser.hit
     expect(cruiser.health).to eq(0)
   end
 
   it 'has been sunk?' do
     cruiser = Ship.new("Cruiser", 3)
-
-    cruiser.hit
-    cruiser.hit
-    cruiser.hit
+    3.times { cruiser.hit }
+    
     expect(cruiser.sunk?).to be true
   end
 end
