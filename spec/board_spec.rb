@@ -53,6 +53,41 @@ require 'pry'
       expect(board.valid_coordinate?("A22")).to be false
     end
 
+    it 'cruiser is an instance of Ship' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
+
+      expect(cruiser).to be_instance_of Ship
+    end
+
+    it 'submarine is an instance of Ship' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
+
+      expect(submarine).to be_instance_of Ship
+    end
+
+    xit 'cruiser has valid placement?' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
+
+      expect(board.valid_placement?(cruiser, ["A1", "A2"])).to be false
+    end
+
+    xit 'submarine has valid placement?' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
+
+      expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to be false
+    end
 
 
-  end
+
+
+
+
+end
