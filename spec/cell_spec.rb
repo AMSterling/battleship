@@ -149,10 +149,8 @@ RSpec.describe Cell do
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
-    cruiser.hit
-    cruiser.hit
-    cruiser.hit
-  #may be revisiting
+    3.times { cruiser.hit }
+
     expect(cruiser.sunk?).to be true
   end
 
@@ -161,10 +159,8 @@ RSpec.describe Cell do
     cell_1 = Cell.new("B4")
     cell_2 = Cell.new("C3")
     cell_2.place_ship(cruiser)
-    cruiser.hit
-    cruiser.hit
-    cruiser.hit
-  #may be revisiting
+    3.times { cruiser.hit }
+
     expect(cell_2.render).to eq("X")
   end
 
