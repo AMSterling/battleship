@@ -25,4 +25,9 @@ class Board
   def valid_coordinate?(coordinate)
     cells.has_key?(coordinate)
   end
+
+  def valid_placement?(ship, coordinate)
+  #   #number of coordinates equals the length
+  #   #coordinates must be consecutive (spilt the string)
+  # end
 end
