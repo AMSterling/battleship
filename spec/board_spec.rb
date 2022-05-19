@@ -84,7 +84,7 @@ require './lib/ship'
       expect(board.valid_placement?(submarine, ["A2", "A3", "A4"])).to be false
     end
 
-    xit 'selected consecutive cruiser coordinates' do
+    it 'selected consecutive cruiser coordinates' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -92,7 +92,7 @@ require './lib/ship'
       expect(board.valid_placement?(cruiser, ["A1", "A2", "A4"])).to be false
     end
 
-    xit 'selected consecutive submarine coordinates' do
+    it 'selected consecutive submarine coordinates' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -100,7 +100,7 @@ require './lib/ship'
       expect(board.valid_placement?(submarine, ["A1", "C1"])).to be false
     end
 
-    xit 'has sorted cruiser coordinates' do
+    it 'has sorted cruiser coordinates' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -108,7 +108,7 @@ require './lib/ship'
       expect(board.valid_placement?(cruiser, ["A3", "A2", "A1"])).to be false
     end
 
-    xit 'has sorted submarine coordinates' do
+    it 'has sorted submarine coordinates' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -116,7 +116,7 @@ require './lib/ship'
       expect(board.valid_placement?(submarine, ["C1", "B1"])).to be false
     end
 
-    xit 'did not select diagonal cruiser coordinates' do
+    it 'did not select diagonal cruiser coordinates' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -124,7 +124,7 @@ require './lib/ship'
       expect(board.valid_placement?(cruiser, ["A1", "A2", "A4"])).to be false
     end
 
-    xit 'did not select diagonal submarine coordinates' do
+    it 'did not select diagonal submarine coordinates' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
