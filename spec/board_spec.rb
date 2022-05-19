@@ -2,7 +2,6 @@ require 'rspec'
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
-require 'pry'
 
   RSpec.describe Board do
     it 'is initializes the Board' do
@@ -69,7 +68,7 @@ require 'pry'
       expect(submarine).to be_instance_of Ship
     end
 
-    xit 'cruiser has valid placement?' do
+    it 'cruiser has valid placement?' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -77,7 +76,7 @@ require 'pry'
       expect(board.valid_placement?(cruiser, ["A1", "A2"])).to be false
     end
 
-    xit 'submarine has valid placement?' do
+    it 'submarine has valid placement?' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)

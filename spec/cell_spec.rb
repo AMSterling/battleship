@@ -1,7 +1,6 @@
 require 'rspec'
 require './lib/cell'
 require './lib/ship'
-require 'pry'
 
 RSpec.describe Cell do
   it 'is an instance of cell' do

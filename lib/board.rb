@@ -26,8 +26,7 @@ class Board
     cells.has_key?(coordinate)
   end
 
-  def valid_placement?(ship, coordinate)
-  #   #number of coordinates equals the length
-  #   #coordinates must be consecutive (spilt the string)
-  # end
+  def valid_placement?(ship, coordinates)
+    ship.length == coordinates.count
+  end
 end

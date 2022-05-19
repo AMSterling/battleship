@@ -1,4 +1,3 @@
-require 'pry'
 class Cell
   attr_accessor :sunk
   attr_reader :coordinate, :ship, :fire_upon
@@ -22,7 +21,7 @@ class Cell
   end
 
   def fire_upon
-    if empty? == false
+    if !empty?
       @ship.hit
     end
     @fire_upon = true
