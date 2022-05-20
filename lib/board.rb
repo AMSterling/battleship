@@ -26,13 +26,29 @@ class Board
     cells.has_key?(coordinate)
   end
 
-  def rows_columns(ship, coordinate)
-    letters = coordinate.map { |letter| letter[0] }
-    numbers = coordinate.map { |number| number[1] }
-  end
-
   def valid_placement?(ship, coordinate)
-    require "pry"; binding.pry
-    ship.length == coordinate.count && cells.keys.each_cons(coordinate)
+    rows = coordinate.map { |row| row[0] }
+    columns = coordinate.map { |column| column[1].to_i }
+    # require "pry"; binding.pry
+    if
+      ship.length == coordinate.each_cons(coordinate.count)
+    elsif
+      ship.length == coordinate.count && (rows.uniq.concat.count == 1 && columns.each_cons(column))
+    elsif
+      ship.length == coordinate.count && (columns.uniq.concat.count == 1 && rows.each_cons(row))
+    else
+      false
+    end
   end
 end
+
+#   def row(coordinate)
+#     letters = coordinate.map { |letter| letter[0] }
+#     row = letter.flatten
+#   end
+#
+#   def column(coordinate)
+#     numbers = coordinate.map { |number| number[1] }
+#     column = number.flatten
+#   end
+# end
