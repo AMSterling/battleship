@@ -26,7 +26,13 @@ class Board
     cells.has_key?(coordinate)
   end
 
+  def rows_columns(ship, coordinate)
+    letters = coordinate.map { |letter| letter[0] }
+    numbers = coordinate.map { |number| number[1] }
+  end
+
   def valid_placement?(ship, coordinate)
-    ship.length == coordinate.each_cons(coordinate.count)
+    require "pry"; binding.pry
+    ship.length == coordinate.count && cells.keys.each_cons(coordinate)
   end
 end
