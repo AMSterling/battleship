@@ -27,28 +27,63 @@ class Board
   end
 
   def valid_placement?(ship, coordinate)
-    rows = coordinate.map { |row| row[0] }
-    columns = coordinate.map { |column| column[1].to_i }
-    # require "pry"; binding.pry
-    if
-      ship.length == coordinate.each_cons(coordinate.count)
-    elsif
-      ship.length == coordinate.count && (rows.uniq.concat.count == 1 && columns.each_cons(column))
-    elsif
-      ship.length == coordinate.count && (columns.uniq.concat.count == 1 && rows.each_cons(row))
-    else
-      false
-    end
-  end
-end
+   return false if coordinate.length != ship.length
 
-#   def row(coordinate)
-#     letters = coordinate.map { |letter| letter[0] }
-#     row = letter.flatten
-#   end
-#
-#   def column(coordinate)
-#     numbers = coordinate.map { |number| number[1] }
-#     column = number.flatten
-#   end
-# end
+   if
+    ascending_rows(coordinate) && ascending_columns(coordinate)
+     false
+   elsif
+    descending_rows(coordinate) || descending_columns(coordinate)
+     false
+   elsif
+    !ascending_rows(coordinate) && !same_rows(coordinate)
+     false
+   elsif
+    !ascending_columns(coordinate) && !same_columns(coordinate)
+     false
+   elsif
+    ascending_rows(coordinate) && same_columns(coordinate)
+     true
+   else
+    ascending_columns(coordinate) && same_rows(coordinate)
+     true
+   end
+ end
+
+ def rows(coordinate)
+   rows = coordinate.map { |row| row[0].ord }
+ end
+
+ def columns(coordinate)
+   columns = coordinate.map { |column| column[1].to_i }
+ end
+
+ def same_rows(coordinate)
+   rows(coordinate).uniq.concat.length == 1
+ end
+
+ def same_columns(coordinate)
+   columns(coordinate).uniq.concat.length == 1
+ end
+
+ def ascending_rows(coordinate)
+   rows = rows(coordinate)
+    rows.first + rows.length - 1 == rows.last
+ end
+
+ def ascending_columns(coordinate)
+   columns = columns(coordinate)
+    columns.first + columns.length - 1 == columns.last
+ end
+
+ def descending_rows(coordinate)
+   rows = rows(coordinate)
+    rows.first - rows.length - 1 == rows.last
+ end
+
+ def descending_columns(coordinate)
+   columns = columns(coordinate)
+    columns.first - columns.length - 1 == columns.last
+ end
+
+end
