@@ -133,25 +133,26 @@ require './lib/ship'
       expect(board.valid_placement?(submarine, ["C2", "D3"])).to be false
     end
 
-    xit 'has valid submarine coordinates' do
+    it 'has valid submarine coordinates' do
       board = Board.new
-      cruiser = Ship.new(“Cruiser”, 3)
-      submarine = Ship.new(“Submarine”, 2)
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
 
       expect(board.valid_placement?(submarine, ["A1", "A2"])).to be true
     end
 
     it 'has valid cruiser coordinates' do
       board = Board.new
-      cruiser = Ship.new(“Cruiser”, 3)
-      submarine = Ship.new(“Submarine”, 2)
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
 
       expect(board.valid_placement?(cruiser, ["B1", "C1", "D1"])).to be true
     end
 
-    xit 'A1 is instance of Cell' do
+    xit 'is an instance of A1 cell' do
       board = Board.new
-      cruiser = Ship.new(“Cruiser”, 3)
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
@@ -160,9 +161,10 @@ require './lib/ship'
       expect(board.cells["A1"]).to be_instance_of Cell
     end
 
-    xit 'A2 is instance of Cell' do
+    xit 'is an instance of A2 cell' do
       board = Board.new
-      cruiser = Ship.new(“Cruiser”, 3)
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
@@ -171,9 +173,10 @@ require './lib/ship'
       expect(board.cells["A2"]).to be_instance_of Cell
     end
 
-    xit 'A3 is instance of Cell' do
+    xit 'is an instance of A3 cell' do
       board = Board.new
-      cruiser = Ship.new(“Cruiser”, 3)
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
@@ -182,67 +185,60 @@ require './lib/ship'
       expect(board.cells["A3"]).to be_instance_of Cell
     end
 
-    xit 'cell_1 is instance of Ship' do
+    xit 'cell_1 is instance of ship' do
       board = Board.new
-      cruiser = Ship.new(“Cruiser”, 3)
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
       board.place(cruiser, ["A1", "A2", "A3"])
 
-      expect(cell_1.ship).to be_instance_of(Ship)
+      expect(cell_1.ship).to be_instance_of Ship
     end
 
-    xit 'cell_2 is instance of Ship' do
+    xit 'cell_2 is instance of ship' do
       board = Board.new
-      cruiser = Ship.new(“Cruiser”, 3)
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
       board.place(cruiser, ["A1", "A2", "A3"])
 
-      expect(cell_2.ship).to be_instance_of(Ship)
+      expect(cell_2.ship).to be_instance_of Ship
     end
 
-    xit 'cell_3 is instance of Ship' do
+    xit 'cell_3 is instance of ship' do
       board = Board.new
-      cruiser = Ship.new(“Cruiser”, 3)
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
       board.place(cruiser, ["A1", "A2", "A3"])
 
-      expect(cell_3.ship).to be_instance_of(Ship)
+      expect(cell_3.ship).to be_instance_of Ship
     end
 
-    xit 'cell_3 is instance of Ship' do
+    xit 'cell_3 is instance of ship' do
       board = Board.new
-      cruiser = Ship.new(“Cruiser”, 3)
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
       board.place(cruiser, ["A1", "A2", "A3"])
 
-      expect(cell_3.ship == cell_2.ship).to be true     
+      expect(cell_3.ship == cell_2.ship).to be true
     end
-
+#Repeat test?
     xit 'has valid cruiser coordinates' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
 
       expect(board.valid_placement?(cruiser, ["B1", "C1", "D1"])).to be true
-    end
-
-    xit 'is an instance of a cell' do
-      board = Board.new
-      cruiser = Ship.new("Cruiser", 3)
-      cell_1 = board.cells["A1"]
-      cell_2 = board.cells["A2"]
-      cell_3 = board.cells["A3"]
-      board.place(cruiser, ["A1", "A2", "A3"])
-
-      expect(board.cells["A1"]).to be_instance_of Cell
     end
 
 end
