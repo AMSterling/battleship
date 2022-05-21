@@ -27,9 +27,13 @@ class Board
   end
 
   def valid_placement?(ship, coordinate)
-   return false if coordinate.length != ship.length
-
    if
+    coordinate.length != ship.length
+     false
+   elsif
+     overlap(coordinate)
+     false
+   elsif
     ascending_rows(coordinate) && ascending_columns(coordinate)
      false
    elsif
@@ -84,6 +88,16 @@ class Board
  def descending_columns(coordinate)
    columns = columns(coordinate)
     columns.first - columns.length - 1 == columns.last
+ end
+
+ def place(ship, coordinate)
+   if valid_placement?(ship, coordinate)
+     coordinate.map { |cord| @cells[cord].place_ship(ship)}
+   end
+ end
+
+ def overlap(coordinate)
+   coordinate.any? {|cord| !@cells[cord].empty?}
  end
 
 end
