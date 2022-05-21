@@ -235,4 +235,6 @@ require './lib/ship'
       expect(board.valid_placement?(submarine, ["A1", "B1"])).to be false
     end
 
+    xit ''
+
 end
