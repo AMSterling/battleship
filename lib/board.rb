@@ -114,6 +114,6 @@ class Board
       "C #{@cells["C1"].render(rend)} #{@cells["C2"].render(rend)} #{@cells["C3"].render(rend)} #{@cells["C4"].render(rend)} \n" +
       "D #{@cells["D1"].render(rend)} #{@cells["D2"].render(rend)} #{@cells["D3"].render(rend)} #{@cells["D4"].render(rend)} \n"
     end
-    p render_board
+    render_board
   end
 end
