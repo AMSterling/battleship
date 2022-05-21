@@ -32,7 +32,7 @@ class Cell
       "M"
     elsif @fire_upon && !empty?
       "H"
-    elsif render == true
+    elsif render == true && @ship != nil
       "S"
     elsif !empty? && @ship.sunk?
       "X"
