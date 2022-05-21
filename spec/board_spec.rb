@@ -235,4 +235,30 @@ require './lib/ship'
       expect(board.valid_placement?(submarine, ["A1", "B1"])).to be false
     end
 
+    it 'is a board ready for setup' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+
+      expect(@board.render).to eq(
+        "  1 2 3 4 \n" +
+        "A . . . . \n" +
+        "B . . . . \n" +
+        "C . . . . \n" +
+        "D . . . . \n"
+      )
+    end
+
+    it 'has placed the cruiser' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      board.place(cruiser, ["A1", "A2", "A3"])
+
+      expect(@board.render(true)).to eq(
+        "  1 2 3 4 \n" +
+        "A S S S . \n" +
+        "B . . . . \n" +
+        "C . . . . \n" +
+        "D . . . . \n"
+      )
+    end
 end
