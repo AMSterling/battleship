@@ -30,7 +30,7 @@ puts ""
 puts ""
 
 print "> "
-play = $stdin.gets.chomp
+play = $stdin.gets.chomp.downcase
 
 if play == "p"
  board.render_board_1
