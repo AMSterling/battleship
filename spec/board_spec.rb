@@ -239,7 +239,6 @@ require './lib/ship'
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
 
-
       expect(board.render).to eq(
         "  1 2 3 4 \n" +
         "A . . . . \n" +
@@ -298,7 +297,7 @@ require './lib/ship'
       )
     end
 
-    it 'fired and hit' do
+    xit 'fired and hit' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -319,7 +318,7 @@ require './lib/ship'
       )
     end
 
-    it 'sunk the submarine' do
+    xit 'sunk the submarine' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
