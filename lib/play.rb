@@ -1,3 +1,4 @@
+require 'rspec'
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
@@ -12,5 +13,6 @@ class Play
   end
 
   start_screen
+
 
 end
