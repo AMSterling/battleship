@@ -28,7 +28,7 @@ class Cell
   end
 
   def render(render = false)
-    if @fire_upon && empty?
+    if @fire_upon == true && @ship == nil
       "M"
     elsif @fire_upon && !empty?
       "H"

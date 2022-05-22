@@ -33,7 +33,7 @@ print "> "
 play = $stdin.gets.chomp
 
 if play == "p"
- board.render_board_1
+ puts "Let's Play!!"
 elsif play == "q"
  puts "Goodbye!!!"
 else
