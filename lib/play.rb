@@ -1,18 +1,19 @@
+require 'rspec'
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
 
 class Play
 
+  def initialize
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+  end
 
-
-
-
-
-
-  play.start
 
   def start
+
     puts ""
     puts ""
     puts ""
@@ -41,3 +42,15 @@ class Play
     puts ""
     puts ""
     puts ""
+    print">"
+    user_input = gets.chomp.downcase
+      if user_input == 'p'
+        puts "Prepare for battle!!"
+      elsif user_input == 'q'
+        puts "Good Bye"
+      else
+        puts "What was that?"
+      end
+
+
+end
