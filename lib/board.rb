@@ -100,8 +100,11 @@ class Board
     coordinate.any? {|cord| !@cells[cord].empty?}
   end
 
-  def computer_placement
-
+  def computer_placement #Maybe?
+    ship.length.times do { place(ship, coordinate).sample }
+    until valid_coordinate?(coordinate) == valid_placement(ship, coordinate)
+    end
+  end
   end
 
   def render(rend = false)
