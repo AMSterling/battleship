@@ -11,7 +11,6 @@ class Play
     submarine = Ship.new("Submarine", 2)
   end
 
- start_screen
-
+  start_screen
 
 end

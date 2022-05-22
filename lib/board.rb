@@ -101,6 +101,7 @@ class Board
  end
 
  def computer_placement
+ end
 
   def render(rend = false)
     if rend == false && @ship != nil
