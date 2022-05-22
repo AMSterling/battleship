@@ -104,7 +104,7 @@ class Board
  end
 
   def render(rend = false)
-    if rend == false && @ship != nil
+    if @ship != nil
       render_board_1 = "  1 2 3 4 \n" +
       "A #{@cell["A1"].render(rend)} #{@cells["A2"].render(rend)} #{@cells["A3"].render(rend)} #{@cells["A4"].render(rend)} \n" +
       "B #{@cells["B1"].render(rend)} #{@cells["B2"].render(rend)} #{@cells["B3"].render(rend)} #{@cells["B4"].render(rend)} \n" +
@@ -119,6 +119,5 @@ class Board
       "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
       return render_board_2
     end
-    # render_board
   end
 end

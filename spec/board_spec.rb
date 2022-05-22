@@ -238,7 +238,7 @@ require './lib/ship'
     it 'is a board ready for setup' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
-    
+
 
       expect(board.render).to eq(
         "  1 2 3 4 \n" +
@@ -279,7 +279,7 @@ require './lib/ship'
       )
     end
 
-    xit 'fired and missed' do
+    it 'fired and missed' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -287,6 +287,7 @@ require './lib/ship'
       board.place(submarine, ["C2", "D2"])
       cell_1 = Cell.new("B4")
       cell_1.fire_upon
+      # require "pry"; binding.pry
 
       expect(board.render(true)).to eq(
         "  1 2 3 4 \n" +
