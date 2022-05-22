@@ -10,6 +10,8 @@ class Play
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
+    @computer_placement
+    @player_placement
   end
 
   start_screen
