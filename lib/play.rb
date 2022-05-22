@@ -2,7 +2,7 @@
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
-# require './lib/start_screen'
+require './lib/start_screen'
 
 class Play
 
@@ -10,9 +10,12 @@ class Play
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
+    @computer_placement
+    @player_placement
   end
 
   def start
+
     puts ""
     puts ""
     puts ""
@@ -57,5 +60,8 @@ class Play
     else
      puts "Could you repeat that?"
     end
+
+    render_board_1
+
   end
 end
