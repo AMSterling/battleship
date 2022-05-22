@@ -1,4 +1,4 @@
-require 'rspec'
+# require 'rspec'
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
@@ -49,7 +49,7 @@ class Play
       puts "Prepare for battle!"
       board = Board.New
       board.render_board_1
-      
+
 
 
     elsif player_input == "q"
