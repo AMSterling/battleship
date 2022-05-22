@@ -52,55 +52,57 @@ class Board
     ascending_columns(coordinate) && same_rows(coordinate)
      true
    end
- end
+  end
 
- def rows(coordinate)
+  def rows(coordinate)
    rows = coordinate.map { |row| row[0].ord }
- end
+  end
 
- def columns(coordinate)
+  def columns(coordinate)
    columns = coordinate.map { |column| column[1].to_i }
- end
+  end
 
- def same_rows(coordinate)
+  def same_rows(coordinate)
    rows(coordinate).uniq.concat.length == 1
- end
+  end
 
- def same_columns(coordinate)
+  def same_columns(coordinate)
    columns(coordinate).uniq.concat.length == 1
- end
+  end
 
- def ascending_rows(coordinate)
+  def ascending_rows(coordinate)
    rows = rows(coordinate)
     rows.first + rows.length - 1 == rows.last
- end
+  end
 
- def ascending_columns(coordinate)
+  def ascending_columns(coordinate)
    columns = columns(coordinate)
     columns.first + columns.length - 1 == columns.last
- end
+  end
 
- def descending_rows(coordinate)
+  def descending_rows(coordinate)
    rows = rows(coordinate)
     rows.first - rows.length - 1 == rows.last
- end
+  end
 
- def descending_columns(coordinate)
+  def descending_columns(coordinate)
    columns = columns(coordinate)
     columns.first - columns.length - 1 == columns.last
- end
+  end
 
- def place(ship, coordinate)
-   if valid_placement?(ship, coordinate)
+  def place(ship, coordinate)
+    if valid_placement?(ship, coordinate)
      coordinate.map { |cord| @cells[cord].place_ship(ship)}
-   end
- end
+    end
+  end
 
- def overlap(coordinate)
-   coordinate.any? {|cord| !@cells[cord].empty?}
- end
+  def overlap(coordinate)
+    coordinate.any? {|cord| !@cells[cord].empty?}
+  end
 
- def computer_placement
+  def computer_placement
+
+  end
 
   def render(rend = false)
     if rend == false && @ship != nil
@@ -110,13 +112,20 @@ class Board
       "C #{@cells["C1"].render(rend)} #{@cells["C2"].render(rend)} #{@cells["C3"].render(rend)} #{@cells["C4"].render(rend)} \n" +
       "D #{@cells["D1"].render(rend)} #{@cells["D2"].render(rend)} #{@cells["D3"].render(rend)} #{@cells["D4"].render(rend)} \n"
       return render_board_1
-    else rend == true
+    elsif rend == true
       render_board_2 = "  1 2 3 4 \n" +
       "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \n" +
       "B #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)} \n" +
       "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \n" +
       "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
       return render_board_2
+    elsif rend == true && @fire_upon == true
+      render_board_4 = "  1 2 3 4 \n" +
+      "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \n" +
+      "B #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)} \n" +
+      "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \n" +
+      "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
+      return render_board_
     end
     # render_board
   end
