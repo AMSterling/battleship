@@ -14,8 +14,7 @@ class Play
     @player_placement
   end
 
- start_screen
-
-
+  start_screen
+  
 
 end

@@ -284,8 +284,6 @@ require './lib/ship'
       submarine = Ship.new("Submarine", 2)
       board.place(cruiser, ["A1", "A2", "A3"])
       board.place(submarine, ["C2", "D2"])
-      cell_8 = Cell.new("B4")
-      cell_8.fire_upon
 
       expect(board.render(true)).to eq(
         "  1 2 3 4 \n" +
