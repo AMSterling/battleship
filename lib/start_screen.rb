@@ -30,11 +30,12 @@ puts ""
 puts ""
 
 print "> "
-play = $stdin.gets.chomp.downcase
+player_input = $stdin.gets.chomp.downcase
 
-if play == "p"
+if player_input == "p"
  puts "Let's Play!!"
-elsif play == "q"
+ play.start
+elsif player_input == "q"
  puts "Goodbye!!!"
 else
  puts "Goodbye!!"

@@ -14,7 +14,7 @@ class Play
     @player_placement
   end
 
-  start_screen
-  
-
+  def start
+    render_board_1
+  end
 end

@@ -99,10 +99,10 @@ class Board
   def overlap(coordinate)
     coordinate.any? {|cord| !@cells[cord].empty?}
   end
-
+  #
   def computer_placement #Maybe?
-    until valid_coordinate?(coordinate) = valid_placement(ship, coordinate)
-      ship.length.times { place(ship, coordinate).sample }
+    ship.length.times do { place(ship, coordinate).sample }
+    until valid_coordinate?(coordinate) == valid_placement(ship, coordinate)
     end
   end
 
