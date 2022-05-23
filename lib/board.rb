@@ -92,7 +92,7 @@ class Board
 
   def place(ship, coordinate)
     if valid_placement?(ship, coordinate)
-     coordinate.map { |cord| @cells[cord].place_ship(ship)}
+     coordinate.map { |cord| @cells[cord].place_ship(ship) }
     end
   end
 
