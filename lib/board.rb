@@ -99,28 +99,21 @@ class Board
   def overlap(coordinate)
     coordinate.any? {|cord| !@cells[cord].empty?}
   end
-  #
-  def computer_placement #Maybe?
-    ship.length.times do { place(ship, coordinate).sample }
-    until valid_coordinate?(coordinate) == valid_placement(ship, coordinate)
-    end
-  end
 
-  def render(rend = false)
-    if @ship != nil
-      render_board_1 = "  1 2 3 4 \n" +
-      "A #{@cell["A1"].render(rend)} #{@cells["A2"].render(rend)} #{@cells["A3"].render(rend)} #{@cells["A4"].render(rend)} \n" +
-      "B #{@cells["B1"].render(rend)} #{@cells["B2"].render(rend)} #{@cells["B3"].render(rend)} #{@cells["B4"].render(rend)} \n" +
-      "C #{@cells["C1"].render(rend)} #{@cells["C2"].render(rend)} #{@cells["C3"].render(rend)} #{@cells["C4"].render(rend)} \n" +
-      "D #{@cells["D1"].render(rend)} #{@cells["D2"].render(rend)} #{@cells["D3"].render(rend)} #{@cells["D4"].render(rend)} \n"
-      return render_board_1
-    else rend == true
-      render_board_2 = "  1 2 3 4 \n" +
+
+  def render(render = false)
+    if render == false
+      return "  1 2 3 4 \n" +
+      "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n" +
+      "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \n" +
+      "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \n" +
+      "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
+    elsif render == true
+      return "  1 2 3 4 \n" +
       "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \n" +
       "B #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)} \n" +
       "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \n" +
       "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
-      return render_board_2
     # elsif rend == true && @fire_upon
     #   render_board_4 = "  1 2 3 4 \n" +
     #   "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \n" +

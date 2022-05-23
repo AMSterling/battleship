@@ -239,7 +239,8 @@ require './lib/ship'
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
 
-      expect(board.render).to eq(
+
+      expect(board.render(true)).to eq(
         "  1 2 3 4 \n" +
         "A . . . . \n" +
         "B . . . . \n" +
@@ -252,7 +253,7 @@ require './lib/ship'
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       board.place(cruiser, ["A1", "A2", "A3"])
-
+#
       expect(board.render(true)).to eq(
         "  1 2 3 4 \n" +
         "A S S S . \n" +
@@ -268,7 +269,7 @@ require './lib/ship'
       submarine = Ship.new("Submarine", 2)
       board.place(cruiser, ["A1", "A2", "A3"])
       board.place(submarine, ["C2", "D2"])
-
+#
       expect(board.render(true)).to eq(
         "  1 2 3 4 \n" +
         "A S S S . \n" +
@@ -278,13 +279,14 @@ require './lib/ship'
       )
     end
 
-    it 'fired and missed' do
+    xit 'fired and missed' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
       board.place(cruiser, ["A1", "A2", "A3"])
       board.place(submarine, ["C2", "D2"])
-
+      cell_1 = Cell.new("B4")
+      cell_1.fire_upon
       expect(board.render(true)).to eq(
         "  1 2 3 4 \n" +
         "A S S S . \n" +
@@ -300,11 +302,10 @@ require './lib/ship'
       submarine = Ship.new("Submarine", 2)
       board.place(cruiser, ["A1", "A2", "A3"])
       board.place(submarine, ["C2", "D2"])
-      cell_8 = Cell.new("B4")
-      cell_8.fire_upon
-      cell_1 = Cell.new("A1")
+      cell_1 = Cell.new("B4")
       cell_1.fire_upon
-      cruiser.hit
+      cell_2 = Cell.new("A1")
+      cell_2.fire_upon
 
       expect(board.render(true)).to eq(
         "  1 2 3 4 \n" +
@@ -315,22 +316,22 @@ require './lib/ship'
       )
     end
 
+
+
     xit 'sunk the submarine' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
       board.place(cruiser, ["A1", "A2", "A3"])
       board.place(submarine, ["C2", "D2"])
-      cell_8 = Cell.new("B4")
-      cell_8.fire_upon
-      cell_1 = Cell.new("A1")
+      cell_1 = Cell.new("B4")
       cell_1.fire_upon
-      cruiser.hit
-      cell_10 = Cell.new("C2")
-      cell_10.fire_upon
-      cell_14 = Cell.new("D2")
-      cell_14.fire_upon
-      2.times { submarine.hit }
+      cell_2 = Cell.new("A1")
+      cell_2.fire_upon
+      cell_3 = Cell.new("C2")
+      cell_3.fire_upon
+      cell_4 = Cell.new("D2")
+      cell_4.fire_upon
 
       expect(board.render(true)).to eq(
         "  1 2 3 4 \n" +
