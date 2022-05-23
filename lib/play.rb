@@ -8,11 +8,10 @@ class Play
   attr_reader :computer_placement
   def initialize
     @board = Board.new
-    # @computer_board = Board.new
-    # @computer_ship_1 = Ship.new("Cruiser", 3)
-    # @computer_ship_2 = Ship.new("Submarine", 2)
-    # @player_board = nil
-    # @player_ships = nil
+    @computer_board = Board.new
+    @computer_ship = ships
+    @player_board = Board.new
+    @player_ships = ships
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
   end
@@ -53,12 +52,11 @@ class Play
     if player_input == "p"
       puts "Prepare for battle!"
       @computer_board = Board.new
-      @computer_ship_1 = Ship.new("Submarine", 2)
-      coordinates = []
-      until @computer_board.valid_placement?(@computer_ship_1, @computer_board.cells.keys) == true do
-        corrdinates = @computer_board.place(@computer_ship_1, @computer_board.cells.keys.sample(2))
-      end
-      puts coordinates
+      # coordinates = []
+      # until @computer_board.valid_placement?(@computer_ship_1, @computer_board.cells.keys) == true do
+      #   corrdinates = @computer_board.place(@computer_ship_1, @computer_board.cells.keys.sample(2))
+      # end
+      # puts coordinates
 
 
     elsif player_input == "q"
@@ -67,4 +65,7 @@ class Play
      puts "Could you repeat that?"
     end
 
+    def ships
+      ships = [["Cruiser", 3], ["Submarine", 2]]
+    end
 end
