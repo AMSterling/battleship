@@ -5,7 +5,7 @@ require './lib/ship'
 
 
 class Play
-  attr_reader :computer_placement
+  attr_reader :computer_placement, :take_turn
   def initialize
     @board = Board.new
     @computer_board = Board.new
@@ -51,8 +51,8 @@ class Play
     print "> "
     player_input = gets.chomp.downcase
 
-    if player_input == "p"
-      puts "Prepare for battle!"
+  if player_input == "p"
+    puts "Prepare for battle!"
       @computer_board = Board.new
       @player_board = Board.new
       @computer_ship_1 = Ship.new("Submarine", 2)
@@ -60,71 +60,91 @@ class Play
       @player_ship_1 = Ship.new("Submarine", 2)
       @player_ship_2 =  Ship.new("Cruiser", 3)
 
-      if @computer_board.valid_placement?(@computer_ship_1, ["D2", "D3"])
-        @computer_board.place(@computer_ship_1, ["D2", "D3"])
+    if @computer_board.valid_placement?(@computer_ship_1, ["D2", "D3"])
+      @computer_board.place(@computer_ship_1, ["D2", "D3"])
 
-        @computer_board.valid_placement?(@computer_ship_2, ["B4", "C4", "D4"])
-          @computer_board.place(@computer_ship_2, ["B4", "C4", "D4"])
-      end
+      @computer_board.valid_placement?(@computer_ship_2, ["B4", "C4", "D4"])
+        @computer_board.place(@computer_ship_2, ["B4", "C4", "D4"])
+    end
 
       puts "I have laid out my ships!"
-      puts "You now need to lay out your 2 ships"
+      puts "You now need to place your 2 ships.."
       puts "The Submarine is 2 units long and the Cruiser is 3 units long."
-      puts @player_board.render(true)
-      puts "Select 2 coordinates for your Submarine"
-      puts "Type your first coordinate (ex: A1) press 'enter' then type your second coordinate and press 'enter' "
-      print "> "
-      sub_array = Array.new
-        until sub_array.count == 2
-          sub_array << gets.chomp.upcase.to_s
-        end
 
-      if !@player_board.valid_placement?(@player_ship_1, sub_array)
-        puts "Invalid selection. Pick again"
-      print "> "
-      elsif
+      puts @player_board.render(true)
+
+      puts "Select 2 coordinates for your Submarine."
+      puts "Type your first coordinate (ex: A1) press 'enter' then type your second coordinate and press 'enter'."
+
+      sub_array = []
+        until sub_array.count && @player_board.valid_placement?(@player_ship_1, sub_array)
+          print "> "
+            sub_placement = gets.chomp.upcase.to_s
+              if !@player_board.cells.keys.include?(sub_placement)
+                puts "Seriously? C'mon meow."
+                puts "Pick coordinate #{sub_array.count + 1} and make it a good one."
+              else
+                sub_array << sub_placement
+              end
+          end
+
+      if
         @player_board.valid_placement?(@player_ship_1, sub_array)
-        @player_board.place(@player_ship_1, sub_array)
+          @player_board.place(@player_ship_1, sub_array)
+
       puts @player_board.render(true)
-      puts "Now select 3 available coordinates for your Cruiser"
-      puts "Type your first coordinate, press 'enter' then type your second coordinate, press 'enter'
-      type in your third coordinate then press 'enter' "
+
+      puts "Now select 3 available coordinates for your Cruiser."
+      puts "Remember to type each coordinate on a new line!"
+
+      cruiser_array = []
+        until cruiser_array.count && @player_board.valid_placement?(@player_ship_2, cruiser_array)
+          print "> "
+            cruiser_placement = gets.chomp.upcase.to_s
+              if !@player_board.cells.keys.include?(cruiser_placement)
+                puts "Are we even looking at the same board?! Try again."
+                puts "Select coordinate #{cruiser_array.count + 1}"
+              else
+                cruiser_array << cruiser_placement
+              end
+          end
+
+        if
+          @player_board.valid_placement?(@player_ship_2, cruiser_array)
+            @player_board.place(@player_ship_2, cruiser_array)
+
+      puts "=============COMPUTER BOARD============="
+      puts   @computer_board.render
+
+      puts "==============PLAYER BOARD=============="
+      puts   @player_board.render(true)
+
+
+      puts "Enter a coordinate to take a shot:"
+
       print "> "
-      cruiser_array = Array.new
-        until cruiser_array.count == 3
-          cruiser_array << gets.chomp.upcase.to_s
-        end
-        if @player_board.valid_placement?(@player_ship_2, cruiser_array)
-          @player_board.place(@player_ship_2, cruiser_array)
-        puts @player_board.render(true)
-        else
-        puts "Invalid selection. Pick again"
-        print "> "
-        until cruiser_array.count == 3
-          cruiser_array << gets.chomp.upcase.to_s
+      player_shot = gets.chomp.upcase.to_s
+        until @computer_board.valid_coordinate?(player_shot) == true
+          # && !@computer_board.cells[player_shot].fired_upon?
+          puts "Try a valid coordinate this time!"
+          print "> "
+          player_shot = gets.chomp.upcase.to_s
         end
 
-        end
+        computer_cell = @computer_board.cells[player_shot]
+        computer_cell.fire_upon
+        puts @computer_board.render
+
+
+    def comp_shot
+
+    end
+
+      elsif player_input == "q"
+        puts "Goodbye!!!"
+      else
+        puts "Start Over!!"
       end
-
-
-    elsif player_input == "q"
-     puts "Goodbye!!!"
-    else
-     puts "Could you repeat that?"
     end
-
-   #  def take_turn
-   # puts "=============COMPUTER BOARD============="
-   # puts @computer_board.render
-   #
-   # puts "==============PLAYER BOARD=============="
-   # puts @player_board.render(true)
-   #
-   # puts "Enter the coordinate to take a shot:"
-
-
-    def ships
-      ships = [["Cruiser", 3], ["Submarine", 2]]
-    end
+  end
 end
