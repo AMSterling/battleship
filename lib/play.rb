@@ -100,6 +100,10 @@ class Play
         else
         puts "Invalid selection. Pick again"
         print "> "
+        until cruiser_array.count == 3
+          cruiser_array << gets.chomp.upcase.to_s
+        end
+
         end
       end
 
