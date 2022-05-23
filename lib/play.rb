@@ -2,19 +2,21 @@
 require './lib/board'
 require './lib/cell'
 require './lib/ship'
-require './lib/start_screen'
+
 
 class Play
-
+  attr_reader :computer_placement
   def initialize
-    board = Board.new
+    @board = Board.new
+    # @computer_board = Board.new
+    # @computer_ship_1 = Ship.new("Cruiser", 3)
+    # @computer_ship_2 = Ship.new("Submarine", 2)
+    # @player_board = nil
+    # @player_ships = nil
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
-    @computer_placement
-    @player_placement
   end
 
-  def start
 
     puts ""
     puts ""
@@ -46,13 +48,17 @@ class Play
     puts ""
 
     print "> "
-    player_input = $stdin.gets.chomp.downcase
+    player_input = gets.chomp.downcase
 
     if player_input == "p"
       puts "Prepare for battle!"
-      board = Board.New
-      board.render_board_1
-
+      @computer_board = Board.new
+      @computer_ship_1 = Ship.new("Submarine", 2)
+      coordinates = []
+      until @computer_board.valid_placement?(@computer_ship_1, @computer_board.cells.keys) == true do
+        corrdinates = @computer_board.place(@computer_ship_1, @computer_board.cells.keys.sample(2))
+      end
+      puts coordinates
 
 
     elsif player_input == "q"
@@ -61,7 +67,4 @@ class Play
      puts "Could you repeat that?"
     end
 
-    render_board_1
-
-  end
 end
