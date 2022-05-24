@@ -9,7 +9,7 @@ class Cell
   end
 
   def empty?
-    @ship == nil
+    ship == nil
   end
 
   def place_ship(type)
@@ -30,13 +30,13 @@ class Cell
   end
 
   def render(render = false)
-    if @fire_upon == true && @ship == nil
+    if @fire_upon == true && ship == nil
       "M"
     elsif @fire_upon && !empty?
       "H"
-    elsif render == true && @ship != nil
+    elsif render == true && ship != nil
       "S"
-    elsif !empty? && @ship.sunk?
+    elsif @fire_upon == true && ship.sunk?
       "X"
     else
       "."
