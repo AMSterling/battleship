@@ -153,10 +153,29 @@ class Play
 
       if @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true
         puts "GAME OVER YOU HAVE WON!!"
+        puts "Press 'p' to play again or 'q' to quit"
+        print "> "
+        player_input = gets.chomp.downcase
+        if player_input == "p"
+          Play.new.start
+        elsif player_input == "q"
+          puts "Goodbye!!!"
+        else
+          puts "Start Over!!"
+        end
+
       else @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
         puts "YOU LOSE!!"
+        puts "Press 'p' to play again or 'q' to quit"
+        print "> "
+        if player_input == "p"
+          Play.new.start
+        elsif player_input == "q"
+          puts "Goodbye!!!"
+        else
+          puts "Start Over!!"
+        end
       end
-
     elsif player_input == "q"
       puts "Goodbye!!!"
     else
