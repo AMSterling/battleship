@@ -77,13 +77,13 @@ class Play
       puts "Type your first coordinate (ex: A1) press 'enter' then type your second coordinate and press 'enter'."
 
       sub_array = []
-        until sub_array.count && @player_board.valid_placement?(@player_ship_1, sub_array)
+        until sub_array.count == 2 && @player_board.valid_placement?(@player_ship_1, sub_array)
           print "> "
             sub_placement = gets.chomp.upcase.to_s
               if !@player_board.cells.keys.include?(sub_placement)
                 puts "Seriously? C'mon meow."
                 puts "Pick coordinate #{sub_array.count + 1} and make it a good one."
-              else
+              elsif
                 sub_array << sub_placement
               end
           end
@@ -98,7 +98,7 @@ class Play
       puts "Remember to type each coordinate on a new line!"
 
       cruiser_array = []
-        until cruiser_array.count && @player_board.valid_placement?(@player_ship_2, cruiser_array)
+        until cruiser_array.count == 3 && @player_board.valid_placement?(@player_ship_2, cruiser_array)
           print "> "
             cruiser_placement = gets.chomp.upcase.to_s
               if !@player_board.cells.keys.include?(cruiser_placement)
@@ -119,26 +119,36 @@ class Play
       puts "==============PLAYER BOARD=============="
       puts   @player_board.render(true)
 
-
+      #### - gameplay loop around here maybe
       puts "Enter a coordinate to take a shot:"
 
       print "> "
       player_shot = gets.chomp.upcase.to_s
         until @computer_board.valid_coordinate?(player_shot) == true
-          # && !@computer_board.cells[player_shot].fired_upon?
           puts "Try a valid coordinate this time!"
           print "> "
           player_shot = gets.chomp.upcase.to_s
         end
 
-        computer_cell = @computer_board.cells[player_shot]
-        computer_cell.fire_upon
-        puts @computer_board.render
+      computer_cell = @computer_board.cells[player_shot]
+      computer_cell.fire_upon
+      puts @computer_board.render
+
+      puts "MY TURN!!"
+
+      computer_shot = @player_board.cells.keys.sample(1).join
+      player_cell = @player_board.cells[computer_shot]
+      player_cell.fire_upon
+      puts @player_board.render(true)
+
+      puts "=============COMPUTER BOARD============="
+      puts   @computer_board.render
+
+      puts "==============PLAYER BOARD=============="
+      puts   @player_board.render(true)
 
 
-    def comp_shot
-
-    end
+ ####Create gameplay loop until ships are sunk
 
       elsif player_input == "q"
         puts "Goodbye!!!"
@@ -148,3 +158,18 @@ class Play
     end
   end
 end
+
+
+
+# until @player_board.valid_coordinate?(computer_shot) == true
+# end
+# player_cell = @player_board.cells[computer_shot].fire_upon? == true
+# require "pry"; binding.pry
+#
+#       # @player_board.valid_coordinate?(computer_shot)
+# until @player_board.cells[computer_shot].fired_upon? == true
+# # until @player_board.valid_coordinate?(computer_shot) == true
+# #   computer_shot = @player_board.cells.keys.sample(1)
+# # end
+# #
+# #
