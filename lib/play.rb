@@ -150,7 +150,12 @@ class Play
       puts "==============PLAYER BOARD=============="
       puts   @player_board.render(true)
     end
-    puts "GAME OVER"
+
+      if @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true
+        puts "GAME OVER YOU HAVE WON!!"
+      else @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
+        puts "YOU LOSE!!"
+      end
 
     elsif player_input == "q"
       puts "Goodbye!!!"

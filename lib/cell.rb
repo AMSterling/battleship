@@ -32,12 +32,12 @@ class Cell
   def render(render = false)
     if @fire_upon == true && ship == nil
       "M"
+    elsif !empty? && !!ship.sunk? && ship != nil
+      "X"
     elsif @fire_upon && !empty?
       "H"
     elsif render == true && ship != nil
       "S"
-    elsif @fire_upon == true && ship.sunk?
-      "X"
     else
       "."
     end
