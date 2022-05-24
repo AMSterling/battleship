@@ -54,7 +54,8 @@ class Play
     player_input = gets.chomp.downcase
 
   if player_input == "p"
-    puts "Prepare for battle!"
+    puts "PREPARE FOR BATTLE!"
+    puts "~~~~~~~~~~~~~~~~~~~"
       @computer_board = Board.new
       @player_board = Board.new
       @computer_ship_1 = Ship.new("Submarine", 2)
@@ -69,11 +70,13 @@ class Play
         @computer_board.place(@computer_ship_2, ["B4", "C4", "D4"])
     end
 
-      puts "I have laid out my ships!"
+      puts "~I have laid out my ships!~"
       puts "You now need to place your 2 ships.."
       puts "The #{@player_ship_1.name} is #{@player_ship_1.length} units long and the #{@player_ship_2.name} is #{@player_ship_2.length} units long."
 
+      puts "==============PLAYER BOARD=============="
       puts @player_board.render(true)
+      puts "========================================"
 
       puts "Select 2 coordinates for your #{@player_ship_1.name}."
       puts "Type your first coordinate (ex: A1) press 'enter' then type your second coordinate and press 'enter'."
@@ -94,7 +97,9 @@ class Play
         @player_board.valid_placement?(@player_ship_1, sub_array)
           @player_board.place(@player_ship_1, sub_array)
 
+      puts "==============PLAYER BOARD=============="
       puts @player_board.render(true)
+      puts "========================================"
 
       puts "Now select #{@player_ship_2.length} available coordinates for your #{@player_ship_2.name}."
       puts "Remember to type each coordinate on a new line!"
@@ -105,7 +110,7 @@ class Play
             cruiser_placement = gets.chomp.upcase.to_s
               if !@player_board.cells.keys.include?(cruiser_placement)
                 puts "Are we even looking at the same board?! Try again."
-                puts "Select coordinate #{cruiser_array.count + 1} and remember that punishement we discussed earlier?"
+                puts "Select coordinate #{cruiser_array.count + 1} taking into account that punishement we discussed earlier"
               else
                 cruiser_array << cruiser_placement
               end
@@ -115,47 +120,59 @@ class Play
           @player_board.valid_placement?(@player_ship_2, cruiser_array)
             @player_board.place(@player_ship_2, cruiser_array)
 
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+      puts "All boards ready! LET THE BATTLE COMMENCE!!!"
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
       puts "=============COMPUTER BOARD============="
       puts   @computer_board.render
 
       puts "==============PLAYER BOARD=============="
       puts   @player_board.render(true)
 
-      until @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true || @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
+      puts "========================================"
 
+      until
+        @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true ||
+          @player_ship_1.sunk? == true &&     @player_ship_2.sunk? == true
+
+      puts "YOUR TURN!"
+      puts "__________"
       puts "Enter a coordinate to take a shot:"
-
       print "> "
-      player_shot = gets.chomp.upcase.to_s
-        until @computer_board.valid_coordinate?(player_shot) == true
-          puts "Try a valid coordinate this time!"
-          print "> "
-          player_shot = gets.chomp.upcase.to_s
-        end
+
+        player_shot = gets.chomp.upcase.to_s
+          until @computer_board.valid_coordinate?(player_shot) == true
+            puts "Try a valid coordinate this time!"
+            print "> "
+            player_shot = gets.chomp.upcase.to_s
+          end
 
       computer_cell = @computer_board.cells[player_shot]
       computer_cell.fire_upon
-      puts @computer_board.render
 
       puts "MY TURN!!"
+      puts "_________"
 
       computer_shot = @player_board.cells.keys.sample(1).join
       player_cell = @player_board.cells[computer_shot]
       player_cell.fire_upon
-      puts @player_board.render(true)
 
       puts "=============COMPUTER BOARD============="
       puts   @computer_board.render
 
       puts "==============PLAYER BOARD=============="
       puts   @player_board.render(true)
-    end
+
+      puts "========================================"
+    end #for until
 
       if @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true
-        puts "GAME OVER YOU HAVE WON!!"
+        puts "GAME OVER, YOU HAVE WON!!"
       else @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
         puts "YOU LOSE!!"
       end
+    end
 
     elsif player_input == "q"
       puts "Goodbye!!!"
@@ -163,10 +180,8 @@ class Play
       puts "Start Over!!"
     end
   end
-  end
 end
 end
-
 Play.new.start
 
 
