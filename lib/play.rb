@@ -7,20 +7,18 @@ require './lib/ship'
 
 class Play
   attr_reader
+
   def initialize
-    # @board = Board.new
     @computer_board = nil
     @player_board = nil
     @computer_ship_1 = nil
     @computer_ship_2 =  nil
     @player_ship_1 = nil
     @player_ship_2 =  nil
-    # cruiser = Ship.new("Cruiser", 3)
-    # submarine = Ship.new("Submarine", 2)
   end
 
-  def start
 
+  def start
     puts ""
     puts ""
     puts ""
@@ -53,9 +51,17 @@ class Play
     print "> "
     player_input = gets.chomp.downcase
 
-  if player_input == "p"
-    puts "PREPARE FOR BATTLE!"
-    puts "~~~~~~~~~~~~~~~~~~~"
+    if player_input == "q"
+      puts "~~~~~~~~~~"
+      puts "Goodbye!!!"
+      puts "~~~~~~~~~~"
+      exit
+    elsif player_input == "p"
+      puts "~~~~~~~~~~~~~~~~~~~"
+      puts "PREPARE FOR BATTLE!"
+      puts "~~~~~~~~~~~~~~~~~~~"
+    end
+
       @computer_board = Board.new
       @player_board = Board.new
       @computer_ship_1 = Ship.new("Submarine", 2)
@@ -63,12 +69,12 @@ class Play
       @player_ship_1 = Ship.new("Submarine", 2)
       @player_ship_2 =  Ship.new("Cruiser", 3)
 
-    if @computer_board.valid_placement?(@computer_ship_1, ["D2", "D3"])
-      @computer_board.place(@computer_ship_1, ["D2", "D3"])
+      if @computer_board.valid_placement?(@computer_ship_1, ["D2", "D3"])
+        @computer_board.place(@computer_ship_1, ["D2", "D3"])
 
-      @computer_board.valid_placement?(@computer_ship_2, ["B4", "C4", "D4"])
-        @computer_board.place(@computer_ship_2, ["B4", "C4", "D4"])
-    end
+        @computer_board.valid_placement?(@computer_ship_2, ["B4", "C4", "D4"])
+          @computer_board.place(@computer_ship_2, ["B4", "C4", "D4"])
+      end
 
       puts "~I have laid out my ships!~"
       puts "You now need to place your 2 ships.."
@@ -87,7 +93,7 @@ class Play
             sub_placement = gets.chomp.upcase.to_s
               if !@player_board.cells.keys.include?(sub_placement)
                 puts "Seriously? C'mon meow."
-                puts "Pick coordinate #{sub_array.count + 1} and make it a good one or you will be punished and have to start over."
+                puts "Pick coordinate #{sub_array.count + 1}; make it a good one or you will be punished and have to start over."
               elsif
                 sub_array << sub_placement
               end
@@ -132,12 +138,13 @@ class Play
 
       puts "========================================"
 
-      until
-        @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true ||
-          @player_ship_1.sunk? == true &&     @player_ship_2.sunk? == true
+    until
+      @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true ||
+        @player_ship_1.sunk? == true &&     @player_ship_2.sunk? == true
 
+      puts "~~~~~~~~~~"
       puts "YOUR TURN!"
-      puts "__________"
+      puts "~~~~~~~~~~"
       puts "Enter a coordinate to take a shot:"
       print "> "
 
@@ -151,8 +158,9 @@ class Play
       computer_cell = @computer_board.cells[player_shot]
       computer_cell.fire_upon
 
+      puts "~~~~~~~~~"
       puts "MY TURN!!"
-      puts "_________"
+      puts "~~~~~~~~~"
 
       computer_shot = @player_board.cells.keys.sample(1).join
       player_cell = @player_board.cells[computer_shot]
@@ -169,7 +177,9 @@ class Play
 
       if @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true
 
-        puts "GAME OVER YOU HAVE WON!!"
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~"
+        puts "GAME OVER, YOU HAVE WON!!"
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~"
         puts "Press 'p' to play again or 'q' to quit"
         print "> "
         player_input = gets.chomp.downcase
@@ -182,7 +192,10 @@ class Play
         end
 
       else @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
+
+        puts "~~~~~~~~~~"
         puts "YOU LOSE!!"
+        puts "~~~~~~~~~~"
         puts "Press 'p' to play again or 'q' to quit"
         print "> "
         if player_input == "p"
@@ -193,13 +206,8 @@ class Play
           puts "Start Over!!"
         end
       end
-
-    elsif player_input == "q"
-      puts "Goodbye!!!"
-    else
-      puts "Start Over!!"
-    end
   end
+end
 end
 end
 Play.new.start
