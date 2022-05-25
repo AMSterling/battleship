@@ -74,7 +74,7 @@ class Play
 
       @computer_board.valid_placement?(@computer_ship_2, ["B4", "C4", "D4"])
       @computer_board.place(@computer_ship_2, ["B4", "C4", "D4"])
-    
+
 
       puts "~I have laid out my ships!~"
       puts "You now need to place your 2 ships.."
@@ -248,8 +248,6 @@ class Play
   end
 
   end
-end
-end
 Play.new.start
 
 
