@@ -88,14 +88,22 @@ class Play
       puts "Type your first coordinate (ex: A1) press 'enter' then type your second coordinate and press 'enter'."
 
       sub_array = []
-        until sub_array.count == 2 && @player_board.valid_placement?(@player_ship_1, sub_array)
+        loop do
           print "> "
             sub_placement = gets.chomp.upcase.to_s
               if !@player_board.cells.keys.include?(sub_placement)
                 puts "Seriously? C'mon meow."
-                puts "Pick coordinate #{sub_array.count + 1}; make it a good one or you will be punished and have to start over."
-              elsif
+                puts "Pick coordinate #{sub_array.count + 1}"
+                redo
+              else
                 sub_array << sub_placement
+                  if sub_array.count == 2 && @player_board.valid_placement?(@player_ship_1, sub_array)
+                    break
+                  else
+                    sub_array.delete_at(1)
+                    puts "Pick coordinate #{sub_array.count + 1}."
+                    redo
+                  end
               end
           end
 
@@ -116,11 +124,15 @@ class Play
             cruiser_placement = gets.chomp.upcase.to_s
               if !@player_board.cells.keys.include?(cruiser_placement)
                 puts "Are we even looking at the same board?! Try again."
-                puts "Select coordinate #{cruiser_array.count + 1} taking into account that punishement we discussed earlier"
+                puts "Select coordinate #{cruiser_array.count + 1}."
+              elsif sub_array.include?(cruiser_placement)
+                puts "Ships cannot overlap. Shame on you for trying."
+                puts "Select coordinate #{cruiser_array.count + 1}."
               else
                 cruiser_array << cruiser_placement
               end
           end
+        end
 
         if
           @player_board.valid_placement?(@player_ship_2, cruiser_array)
@@ -142,11 +154,10 @@ class Play
         @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true ||
           @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
 
-
       puts "~~~~~~~~~~"
       puts "YOUR TURN!"
       puts "~~~~~~~~~~"
-      puts "Enter a coordinate to take a shot:"
+      puts "Enter a coordinate to take your shot."
       print "> "
 
         player_shot = gets.chomp.upcase.to_s
@@ -166,8 +177,6 @@ class Play
         elsif @computer_board.cells[player_shot].render == "X"
           puts "You SUNK my ship!!"
         end
-
-
 
 
       computer_shot = @player_board.cells.keys.sample(1).join
