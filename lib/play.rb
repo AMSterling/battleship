@@ -149,7 +149,7 @@ class Play
       puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
       puts "=============COMPUTER BOARD============="
-      puts   @computer_board.render(true)
+      puts   @computer_board.render
 
 
       puts "==============PLAYER BOARD=============="
@@ -192,7 +192,7 @@ class Play
         end
 
         puts "=============COMPUTER BOARD============="
-        puts   @computer_board.render(true)
+        puts   @computer_board.render
 
         puts "==============PLAYER BOARD=============="
         puts   @player_board.render(true)
