@@ -84,9 +84,8 @@ class Play
         # @computer_board.valid_placement?(@computer_ship_1, @computer_sub.any?)
       until @computer_board.valid_placement?(@computer_ship_1, @computer_board.cells.keys) == true do
             @computer_board.place(@computer_ship_1, @computer_sub.sample(1))
+        end
       @computer_board.valid_placement?(@computer_ship_2, @computer_cruiser.any?)
-      end
-      iser.any?)
       @computer_board.place(@computer_ship_2, @computer_cruiser.sample(1))
 
 
@@ -185,24 +184,43 @@ class Play
       computer_cell.fire_upon
 
         if @computer_board.cells[player_shot].render == "H"
+          puts "~~~~~~~~~~~~~~~~~~"
           puts "You scored a HIT!!"
+          puts "~~~~~~~~~~~~~~~~~~"
         elsif @computer_board.cells[player_shot].render == "M"
+          puts "~~~~~~~~~~~~~~~~~"
           puts "HaHa You MISSED!!"
+          puts "~~~~~~~~~~~~~~~~~"
         elsif @computer_board.cells[player_shot].render == "X"
+          puts "~~~~~~~~~~~~~~~~~~"
           puts "You SUNK my ship!!"
+          puts "~~~~~~~~~~~~~~~~~~"
         end
 
+        puts "=============COMPUTER BOARD============="
+        puts   @computer_board.render
+
+        puts "==============PLAYER BOARD=============="
+        puts   @player_board.render(true)
+
+        puts "========================================"
 
       computer_shot = @player_board.cells.keys.sample(1).join
       player_cell = @player_board.cells[computer_shot]
       player_cell.fire_upon
 
         if @player_board.cells[computer_shot].render == "H"
-          puts "Muahaha I SCORED A HIT!!"
+          puts "~~~~~~~~~~~~~~~~~~~~~~~~"
+          puts "Muahaha I SCORED A HIT!!" #Printing for misses
+          puts "~~~~~~~~~~~~~~~~~~~~~~~~"
         elsif @player_board.cells[computer_shot].render == "M"
+          puts "~~~~~~~~~~~~~~~"
           puts "DANG I MISSED!!"
+          puts "~~~~~~~~~~~~~~~"
         elsif @player_board.cells[computer_shot].render == "X"
+          puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
           puts "I HAVE YOU NOW HAHA...I SUNK YOUR SHIP!!"
+          puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         end
 
 
@@ -255,9 +273,6 @@ class Play
         end
       end
 
-
-  else player_input == "q"
-    puts "Goodbye!!!"
   end
   end
 
