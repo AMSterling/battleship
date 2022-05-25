@@ -198,9 +198,13 @@ class Play
         if player_input == "p"
           Play.new.start
         elsif player_input == "q"
+          puts "~~~~~~~~~~"
           puts "Goodbye!!!"
+          puts "~~~~~~~~~~"
         else
+          puts "~~~~~~~~~~~~"
           puts "Start Over!!"
+          puts "~~~~~~~~~~~~"
         end
 
       else @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
@@ -213,13 +217,16 @@ class Play
         if player_input == "p"
           Play.new.start
         elsif player_input == "q"
+          puts "~~~~~~~~~~"
           puts "Goodbye!!!"
+          puts "~~~~~~~~~~"
         else
+          puts "~~~~~~~~~~~~"
           puts "Start Over!!"
+          puts "~~~~~~~~~~~~"
         end
       end
   end
-end
 end
 end
 Play.new.start
