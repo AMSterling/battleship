@@ -69,12 +69,12 @@ class Play
       @player_ship_1 = Ship.new("Submarine", 2)
       @player_ship_2 =  Ship.new("Cruiser", 3)
 
-      if @computer_board.valid_placement?(@computer_ship_1, ["D2", "D3"])
-        @computer_board.place(@computer_ship_1, ["D2", "D3"])
+      @computer_board.valid_placement?(@computer_ship_1, ["D2", "D3"])
+      @computer_board.place(@computer_ship_1, ["D2", "D3"])
 
-        @computer_board.valid_placement?(@computer_ship_2, ["B4", "C4", "D4"])
-          @computer_board.place(@computer_ship_2, ["B4", "C4", "D4"])
-      end
+      @computer_board.valid_placement?(@computer_ship_2, ["B4", "C4", "D4"])
+      @computer_board.place(@computer_ship_2, ["B4", "C4", "D4"])
+    
 
       puts "~I have laid out my ships!~"
       puts "You now need to place your 2 ships.."
@@ -150,9 +150,9 @@ class Play
 
       puts "========================================"
 
-    until
-      @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true ||
-        @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
+      until
+        @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true ||
+          @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
 
       puts "~~~~~~~~~~"
       puts "YOUR TURN!"
@@ -170,13 +170,27 @@ class Play
       computer_cell = @computer_board.cells[player_shot]
       computer_cell.fire_upon
 
-      puts "~~~~~~~~~"
-      puts "MY TURN!!"
-      puts "~~~~~~~~~"
+        if @computer_board.cells[player_shot].render == "H"
+          puts "You scored a HIT!!"
+        elsif @computer_board.cells[player_shot].render == "M"
+          puts "HaHa You MISSED!!"
+        elsif @computer_board.cells[player_shot].render == "X"
+          puts "You SUNK my ship!!"
+        end
+
 
       computer_shot = @player_board.cells.keys.sample(1).join
       player_cell = @player_board.cells[computer_shot]
       player_cell.fire_upon
+
+        if @player_board.cells[computer_shot].render == "H"
+          puts "Muahaha I SCORED A HIT!!"
+        elsif @player_board.cells[computer_shot].render == "M"
+          puts "DANG I MISSED!!"
+        elsif @player_board.cells[computer_shot].render == "X"
+          puts "I HAVE YOU NOW HAHA...I SUNK YOUR SHIP!!"
+        end
+
 
       puts "=============COMPUTER BOARD============="
       puts   @computer_board.render
@@ -218,6 +232,13 @@ class Play
           puts "Start Over!!"
         end
       end
+
+
+  else player_input == "q"
+    puts "Goodbye!!!"
+  end
+  end
+
   end
 end
 end
