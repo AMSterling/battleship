@@ -7,20 +7,18 @@ require './lib/ship'
 
 class Play
   attr_reader
+
   def initialize
-    # @board = Board.new
     @computer_board = nil
     @player_board = nil
     @computer_ship_1 = nil
     @computer_ship_2 =  nil
     @player_ship_1 = nil
     @player_ship_2 =  nil
-    # cruiser = Ship.new("Cruiser", 3)
-    # submarine = Ship.new("Submarine", 2)
   end
 
-  def start
 
+  def start
     puts ""
     puts ""
     puts ""
@@ -53,9 +51,17 @@ class Play
     print "> "
     player_input = gets.chomp.downcase
 
-  if player_input == "p"
-    puts "PREPARE FOR BATTLE!"
-    puts "~~~~~~~~~~~~~~~~~~~"
+    if player_input == "q"
+      puts "~~~~~~~~~~"
+      puts "Goodbye!!!"
+      puts "~~~~~~~~~~"
+      exit
+    elsif player_input == "p"
+      puts "~~~~~~~~~~~~~~~~~~~"
+      puts "PREPARE FOR BATTLE!"
+      puts "~~~~~~~~~~~~~~~~~~~"
+    end
+
       @computer_board = Board.new
       @player_board = Board.new
       @computer_ship_1 = Ship.new("Submarine", 2)
@@ -87,7 +93,7 @@ class Play
             sub_placement = gets.chomp.upcase.to_s
               if !@player_board.cells.keys.include?(sub_placement)
                 puts "Seriously? C'mon meow."
-                puts "Pick coordinate #{sub_array.count + 1} and make it a good one or you will be punished and have to start over."
+                puts "Pick coordinate #{sub_array.count + 1}; make it a good one or you will be punished and have to start over."
               elsif
                 sub_array << sub_placement
               end
@@ -136,8 +142,10 @@ class Play
         @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true ||
           @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
 
+
+      puts "~~~~~~~~~~"
       puts "YOUR TURN!"
-      puts "__________"
+      puts "~~~~~~~~~~"
       puts "Enter a coordinate to take a shot:"
       print "> "
 
@@ -150,6 +158,7 @@ class Play
 
       computer_cell = @computer_board.cells[player_shot]
       computer_cell.fire_upon
+
         if @computer_board.cells[player_shot].render == "H"
           puts "You scored a HIT!!"
         elsif @computer_board.cells[player_shot].render == "M"
@@ -157,6 +166,9 @@ class Play
         elsif @computer_board.cells[player_shot].render == "X"
           puts "You SUNK my ship!!"
         end
+
+
+
 
       computer_shot = @player_board.cells.keys.sample(1).join
       player_cell = @player_board.cells[computer_shot]
@@ -182,7 +194,9 @@ class Play
 
       if @computer_ship_1.sunk? == true && @computer_ship_2.sunk? == true
 
-        puts "GAME OVER YOU HAVE WON!!"
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~"
+        puts "GAME OVER, YOU HAVE WON!!"
+        puts "~~~~~~~~~~~~~~~~~~~~~~~~~"
         puts "Press 'p' to play again or 'q' to quit"
         print "> "
         player_input = gets.chomp.downcase
@@ -195,7 +209,10 @@ class Play
         end
 
       else @player_ship_1.sunk? == true && @player_ship_2.sunk? == true
+
+        puts "~~~~~~~~~~"
         puts "YOU LOSE!!"
+        puts "~~~~~~~~~~"
         puts "Press 'p' to play again or 'q' to quit"
         print "> "
         if player_input == "p"
@@ -207,11 +224,14 @@ class Play
         end
       end
 
+
   else player_input == "q"
     puts "Goodbye!!!"
   end
   end
+
   end
+end
 end
 end
 Play.new.start
