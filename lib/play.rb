@@ -68,12 +68,26 @@ class Play
       @computer_ship_2 =  Ship.new("Cruiser", 3)
       @player_ship_1 = Ship.new("Submarine", 2)
       @player_ship_2 =  Ship.new("Cruiser", 3)
+      @computer_sub = ["A1", "A2"], ["A1", "B1"], ["A2", "A3"], ["A3", "A4"],
+        ["A2", "B2"], ["A3", "B3"], ["A4", "B4"], ["B1", "B2"],
+        ["B2", "B3"], ["B3", "B4"], ["B1", "C1"], ["B2", "C2"],
+        ["B3", "C3"], ["B4", "C4"], ["C1", "C2"], ["C2", "C3"],
+        ["C3", "C4"], ["C1", "D1"], ["C2", "D2"], ["C3", "D3"],
+        ["C4", "D4"], ["D1", "D2"], ["D2", "D3"], ["D3", "D4"]
+      @computer_cruiser = ["A1", "A2", "A3"], ["A2", "A3", "A4"], ["A1", "B1", "C1"],
+        ["A2", "B2", "C2"], ["A3", "B3", "C3"], ["A4", "B4", "C4"],
+        ["B1", "B2", "B3"], ["B2", "B3", "B4"], ["B1", "C1", "D1"],
+        ["B2", "C2", "D2"], ["B3", "C3", "D3"], ["C2", "C3", "C4"],
+        ["B4", "C4", "D4"], ["C1", "C2", "C3"], ["D1", "D2", "D3"],
+        ["D2", "D3", "D4"]
 
-      @computer_board.valid_placement?(@computer_ship_1, ["D2", "D3"])
-      @computer_board.place(@computer_ship_1, ["D2", "D3"])
-
-      @computer_board.valid_placement?(@computer_ship_2, ["B4", "C4", "D4"])
-      @computer_board.place(@computer_ship_2, ["B4", "C4", "D4"])
+        # @computer_board.valid_placement?(@computer_ship_1, @computer_sub.any?)
+      until @computer_board.valid_placement?(@computer_ship_1, @computer_board.cells.keys) == true do
+            @computer_board.place(@computer_ship_1, @computer_sub.sample(1))
+      @computer_board.valid_placement?(@computer_ship_2, @computer_cruiser.any?)
+      end
+      iser.any?)
+      @computer_board.place(@computer_ship_2, @computer_cruiser.sample(1))
 
 
       puts "~I have laid out my ships!~"
@@ -143,7 +157,7 @@ class Play
       puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
       puts "=============COMPUTER BOARD============="
-      puts   @computer_board.render
+      puts   @computer_board.render(true)
 
       puts "==============PLAYER BOARD=============="
       puts   @player_board.render(true)
@@ -193,7 +207,7 @@ class Play
 
 
       puts "=============COMPUTER BOARD============="
-      puts   @computer_board.render
+      puts   @computer_board.render(true)
 
       puts "==============PLAYER BOARD=============="
       puts   @player_board.render(true)
@@ -249,18 +263,3 @@ class Play
 
   end
 Play.new.start
-
-
-
-# until @player_board.valid_coordinate?(computer_shot) == true
-# end
-# player_cell = @player_board.cells[computer_shot].fire_upon? == true
-# require "pry"; binding.pry
-#
-#       # @player_board.valid_coordinate?(computer_shot)
-# until @player_board.cells[computer_shot].fired_upon? == true
-# # until @player_board.valid_coordinate?(computer_shot) == true
-# #   computer_shot = @player_board.cells.keys.sample(1)
-# # end
-# #
-# #
