@@ -86,6 +86,7 @@ class Play
       ]
 
       @computer_board.place(@computer_ship_1, @computer_sub.sample)
+
       @computer_board.place(@computer_ship_2, @computer_cruiser.sample)
 
 
@@ -133,18 +134,22 @@ class Play
 
       cruiser_array = []
         until cruiser_array.count == 3 && @player_board.valid_placement?(@player_ship_2, cruiser_array)
+          if cruiser_array.count > 2 && !@player_board.valid_placement?(@player_ship_2, cruiser_array)
+              cruiser_array.clear
+            puts "Try again. Select coordinate #{cruiser_array.count + 1}."
+          end
           print "> "
             cruiser_placement = gets.chomp.upcase.to_s
-              if !@player_board.cells.keys.include?(cruiser_placement)
-                puts "Are we even looking at the same board?! Try again."
-                puts "Select coordinate #{cruiser_array.count + 1}."
-              elsif sub_array.include?(cruiser_placement)
-                puts "Ships cannot overlap. Shame on you for trying."
-                puts "Select coordinate #{cruiser_array.count + 1}."
-              else
-                cruiser_array << cruiser_placement
+                if !@player_board.cells.keys.include?(cruiser_placement)
+                  puts "Are we even looking at the same board?! Try again."
+                  puts "Select coordinate #{cruiser_array.count + 1}."
+                elsif sub_array.include?(cruiser_placement)
+                  puts "Ships cannot overlap. Shame on you for trying."
+                  puts "Select coordinate #{cruiser_array.count + 1}."
+                else
+                  cruiser_array << cruiser_placement
+                end
               end
-          end
         end
 
         if
@@ -156,7 +161,7 @@ class Play
       puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
       puts "=============COMPUTER BOARD============="
-      puts   @computer_board.render
+      puts   @computer_board.render(true)
 
       puts "==============PLAYER BOARD=============="
       puts   @player_board.render(true)
