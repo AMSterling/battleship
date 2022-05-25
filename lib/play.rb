@@ -84,9 +84,8 @@ class Play
         # @computer_board.valid_placement?(@computer_ship_1, @computer_sub.any?)
       until @computer_board.valid_placement?(@computer_ship_1, @computer_board.cells.keys) == true do
             @computer_board.place(@computer_ship_1, @computer_sub.sample(1))
+        end
       @computer_board.valid_placement?(@computer_ship_2, @computer_cruiser.any?)
-      end
-      iser.any?)
       @computer_board.place(@computer_ship_2, @computer_cruiser.sample(1))
 
 
